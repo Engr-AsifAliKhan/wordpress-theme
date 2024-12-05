@@ -1,0 +1,648 @@
+/*
+Theme Name: Ikonic Theme
+Theme URI: http://example.com/my-custom-theme/
+Author: Engr. Asif Ali Khan
+Author URI: http://example.com
+Description: A custom WordPress theme.
+Version: 1.0
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Tags: custom, projects
+Text Domain: my-custom-theme
+*/
+
+/* Main Menu Styles */
+.main-menu {
+    position: relative;
+}
+
+.nav-menu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex; /* Horizontal layout for the menu items */
+}
+
+.nav-menu li {
+    position: relative;
+    margin-right: 20px; /* Space between menu items */
+}
+
+.nav-menu li a {
+    display: block;
+    padding: 10px 16px;
+    text-decoration: none;
+    color: #333;
+    font-size: 14px;
+    font-weight: bold;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Add arrow to parent items with dropdown */
+.nav-menu li.has-children > a::after {
+    content: ' ▼'; /* You can change this to any other arrow symbol */
+    font-size: 12px;
+    color: #666;
+    margin-left: 5px; /* Adds space between text and the arrow */
+}
+
+/* Dropdown Menu Styles */
+.nav-menu li ul {
+    display: none; /* Initially hide the dropdown */
+    position: absolute; /* Position the dropdown beneath the parent */
+    top: 100%; /* Positions it directly below the parent item */
+    left: 0;
+    width: 180px; /* Adjust the width */
+    background-color: #fff;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    z-index: 1000;
+}
+
+/* Show the dropdown on hover */
+.nav-menu li:hover > ul {
+    display: block; /* Makes the dropdown visible on hover */
+}
+
+/* Styling for dropdown items */
+.nav-menu li ul li {
+    min-width: 180px;
+}
+
+.nav-menu li ul li a {
+    padding: 10px;
+    color: #666;
+    font-size: 14px;
+    font-weight: normal;
+}
+
+.nav-menu li ul li a:hover {
+    background-color: #f5f5f5;
+    color: #333;
+}
+
+/* Mobile Version: Stack the menu items and adjust dropdown behavior */
+@media (max-width: 768px) {
+    .nav-menu {
+        flex-direction: column; /* Stack the items vertically on mobile */
+    }
+
+    .nav-menu li {
+        width: 100%; /* Full width for mobile items */
+    }
+
+    .nav-menu li ul {
+        position: static; /* Make dropdown appear below on mobile */
+        width: 100%; /* Make dropdown fill the available space */
+    }
+
+    /* Toggle dropdown on click for mobile */
+    .nav-menu li.active ul {
+        display: block;
+    }
+}
+/* Basic Styling for Hamburger Icon */
+.hamburger-menu {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 25px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+}
+
+.hamburger-menu .line {
+    width: 100%;
+    height: 4px;
+    background-color: #333;
+    border-radius: 5px;
+}
+
+/* Display hamburger menu icon on small screens */
+@media (max-width: 768px) {
+    .hamburger-menu {
+        display: flex;
+    }
+
+    /* Initially hide the nav menu on mobile */
+    .main-menu {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background-color: #fff;
+    }
+
+    /* Make the nav menu visible when it's toggled */
+    .main-menu.open {
+        display: flex;
+    }
+
+    .nav-menu {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+    }
+
+    .nav-menu li {
+        margin: 10px 0;
+    }
+}
+
+/*blog page style*/
+.blog-page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.page-title {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 30px;
+}
+
+.blog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.blog-post {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: box-shadow 0.3s ease;
+    background: #fff;
+}
+
+.blog-post:hover {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.post-thumbnail img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-bottom: 1px solid #ddd;
+}
+
+.post-content {
+    padding: 15px;
+}
+
+.post-title {
+    font-size: 1.25rem;
+    margin: 0 0 10px;
+}
+
+.post-title a {
+    color: #333;
+    text-decoration: none;
+}
+
+.post-title a:hover {
+    color: #0073e6;
+}
+
+.post-meta {
+    font-size: 0.9rem;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+.read-more {
+    display: inline-block;
+    margin-top: 10px;
+    color: #0073e6;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.read-more:hover {
+    text-decoration: underline;
+}
+
+.pagination {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.pagination .page-numbers {
+    margin: 0 5px;
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    color: #0073e6;
+    text-decoration: none;
+    border-radius: 4px;
+}
+
+.pagination .current {
+    background: #0073e6;
+    color: #fff;
+    border: 1px solid #0073e6;
+}
+/* single post Styles */
+.single-blog-post {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.post-thumbnail img {
+    width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+    border-radius: 8px;
+}
+
+.post-header {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.post-title {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.post-meta {
+    font-size: 0.9rem;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+.post-meta .date, .post-meta .author {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.post-content {
+    line-height: 1.8;
+    font-size: 1rem;
+    margin-bottom: 30px;
+}
+
+.post-content img {
+    max-width: 100%;
+    height: auto;
+}
+
+.post-footer {
+    border-top: 1px solid #ddd;
+    padding-top: 20px;
+    margin-top: 20px;
+}
+
+.post-footer .post-categories,
+.post-footer .post-tags {
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.comments-section {
+    margin-top: 40px;
+    border-top: 1px solid #ddd;
+    padding-top: 20px;
+}
+.comments-section {
+    margin-top: 40px;
+    padding: 20px;
+    border-top: 1px solid #ddd;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+}
+
+.comments-section h3 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.comment-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.comment-list .comment {
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #ddd;
+}
+
+.comment-list .comment:last-child {
+    border-bottom: none;
+}
+
+.comment-author {
+    font-weight: bold;
+    color: #0073e6;
+}
+
+.comment-metadata {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.comment-content {
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+.reply {
+    margin-top: 10px;
+}
+
+.reply a {
+    font-size: 0.9rem;
+    color: #0073e6;
+    text-decoration: none;
+}
+
+.reply a:hover {
+    text-decoration: underline;
+}
+
+/* Comment Form */
+.comment-form {
+    margin-top: 30px;
+}
+
+.comment-form label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.comment-form input,
+.comment-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.comment-form input[type="submit"] {
+    background-color: #0073e6;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    padding: 10px 20px;
+    border-radius: 4px;
+}
+
+.comment-form input[type="submit"]:hover {
+    background-color: #005bb5;
+}
+
+.no-comments {
+    font-size: 1rem;
+    color: #666;
+    margin-top: 20px;
+    text-align: center;
+}
+/*Home temeplate style*/
+/* General */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Hero Section */
+.hero-section {
+    background: #f5f5f5;
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.hero-section h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+.hero-content {
+    font-size: 1.2rem;
+    color: #555;
+}
+
+/* Featured Projects and Blogs Section */
+.featured-projects,
+.latest-blogs {
+    margin-top: 40px;
+}
+
+.featured-projects h2,
+.latest-blogs h2 {
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Grid Layout */
+.projects-grid,
+.blogs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.project-card,
+.blog-card {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+}
+
+.project-card:hover,
+.blog-card:hover {
+    transform: translateY(-5px);
+}
+
+.project-thumbnail img,
+.blog-thumbnail img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.project-title,
+.blog-title {
+    font-size: 1.5rem;
+    margin: 15px;
+}
+
+.project-card p,
+.blog-card p {
+    margin: 0 15px 15px;
+    color: #555;
+    line-height: 1.6;
+}
+
+.read-more {
+    display: block;
+    margin: 0 15px 15px;
+    color: #0073e6;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.read-more:hover {
+    text-decoration: underline;
+}
+
+
+/* Projects Archive Styles */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.project-box {
+    background: #fff;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    padding: 20px;
+    text-align: center;
+}
+
+.project-title {
+    font-size: 1.5em;
+    margin: 0 0 10px;
+}
+
+.start-date {
+    font-size: 1em;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.project-footer {
+    margin-top: 20px;
+}
+
+.btn {
+    padding: 10px 20px;
+    text-decoration: none;
+    color: #fff;
+    background-color: #007BFF;
+    border-radius: 5px;
+    margin: 5px;
+    display: inline-block;
+}
+
+.btn:hover {
+    background-color: #0056b3;
+}
+.project-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.project-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 600px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    background: #fff;
+    border-radius: 8px;
+    margin: 20px;
+}
+
+.project-title {
+    margin: 10px 0;
+    font-size: 24px;
+}
+
+.project-meta {
+    font-size: 16px;
+    color: #666;
+}
+
+.project-content {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.project-link {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #0073aa;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+@media (max-width: 768px) {
+    .project-card {
+        padding: 10px;
+    }
+}
+.project-content {
+    text-align: justify;
+    margin: 20px 0;
+    line-height: 1.6; /* Optional: Adjust line height for better readability */
+}
+
+/*style for serach project*/
+
+.filter-form {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 30px;
+    background: #f5f5f5;
+    padding: 20px;
+    border-radius: 8px;
+    align-items: center;
+}
+
+.filter-form .form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.filter-form label {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.filter-form input[type="date"] {
+    padding: 8px 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    width: 100%;
+}
+
+.filter-form .btn {
+    padding: 10px 20px;
+    background-color: #0073e6;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.filter-form .btn:hover {
+    background-color: #005bb5;
+}
